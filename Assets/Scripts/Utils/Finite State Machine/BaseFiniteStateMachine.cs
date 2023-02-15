@@ -41,6 +41,7 @@ public abstract class BaseFiniteStateMachine: IFiniteStateMachine
         }
     }
 
+    // TODO: add variation that starts with specific state received by params.
     public void StartFSM()
     {
         if (!active && CurrentState == null && states.Count > 0)

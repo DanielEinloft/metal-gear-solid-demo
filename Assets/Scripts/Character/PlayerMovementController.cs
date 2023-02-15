@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerMovementState
-{
-    STAND,
-    CROUCH,
-    PRONE
-}
-
 public class PlayerMovementController : MonoBehaviour
 {
     CharacterController characterController;
