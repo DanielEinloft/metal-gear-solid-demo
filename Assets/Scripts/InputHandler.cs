@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum ControllerClickEvent
 {
-    Interact,
+    Crouch,
     Sprint,
     Confirm,
     Back,
@@ -38,7 +38,7 @@ public static class InputHandler
     static string A = "joystick button 0";
     static string B = "joystick button 1";
     static string X = "joystick button 2";
-    static string Y = "joystick button 3";
+    static string Y = "Fire1";
     //static string LB = "joystick button 4";
     //static string RB = "joystick button 5";
     static string RT = "RT";
@@ -47,7 +47,7 @@ public static class InputHandler
     static readonly Dictionary<ControllerClickEvent, string> controllerButtonMap =
     new Dictionary<ControllerClickEvent, string>
     {
-            { ControllerClickEvent.Interact, Y },
+            { ControllerClickEvent.Crouch, Y },
             { ControllerClickEvent.Sprint, X },
             { ControllerClickEvent.Confirm, A },
             { ControllerClickEvent.Back, B },
@@ -64,7 +64,7 @@ public static class InputHandler
     public static bool ButtonPress(ControllerClickEvent playerAction)
     {
         string buttonPress = controllerButtonMap[playerAction];
-        return Input.GetKeyDown(buttonPress);
+        return Input.GetKeyDown(KeyCode.Space);//TODO remove this hardcoded guy
     }
 
     /// <summary>

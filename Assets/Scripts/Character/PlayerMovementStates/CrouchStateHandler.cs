@@ -4,7 +4,30 @@ using UnityEngine;
 
 public class CrouchStateHandler : BaseFSMState
 {
-    public CrouchStateHandler(string stateName, IFiniteStateMachine parentFSM) : base(stateName, parentFSM)
+    CharacterState characterState;
+    public CrouchStateHandler(string stateName, PlayerFSM parentFSM) : base(stateName, parentFSM)
     {
+        characterState = parentFSM.characterState;
+    }
+
+    public override void EnterState()
+    {
+        characterState.UpdateMovementState(PlayerMovementState.CROUCH);
+        base.EnterState();
+    }
+
+    public override void UpdateState()
+    {
+        Vector2 directionInput = InputHandler.GetArrowInput();
+        characterState.PlayerCharacterController.Move(new Vector3(directionInput.x, 0, directionInput.y) * Time.deltaTime * 2);
+        CheckExitCondition();
+    }
+
+    public override void CheckExitCondition()
+    {
+        if (InputHandler.ButtonPress(ControllerClickEvent.Crouch))
+        {
+            parentFSM.ChangeState((int)PlayerMovementState.STAND);
+        }
     }
 }
