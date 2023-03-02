@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         movementState = PlayerMovementState.STAND;
         characterController = GetComponent<CharacterController>();
-        characterState = new CharacterState(characterController, movementState);
+        characterState = new CharacterState(characterController, transform, movementState);
 
         movementFSM = new PlayerFSM("Player Movement FSM", characterState);
         movementFSM.StartFSM();

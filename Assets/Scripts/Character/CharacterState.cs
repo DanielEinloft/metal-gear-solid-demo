@@ -6,11 +6,13 @@ public class CharacterState
 {
     public CharacterController PlayerCharacterController { get; protected set; }
     public PlayerMovementState MovementState { get; protected set; }
+    public Transform PlayerTransform { get; protected set; }
 
-    public CharacterState(CharacterController characterController, PlayerMovementState movementState)
+    public CharacterState(CharacterController characterController, Transform playerTransform, PlayerMovementState movementState)
     {
         PlayerCharacterController = characterController;
         MovementState = movementState;
+        PlayerTransform = playerTransform;
     }
 
     public void UpdateMovementState(PlayerMovementState movementState)

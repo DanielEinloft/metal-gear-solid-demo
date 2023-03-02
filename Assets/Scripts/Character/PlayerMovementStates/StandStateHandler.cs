@@ -21,6 +21,10 @@ public class StandStateHandler : BaseFSMState
     {
         Vector2 directionInput = InputHandler.GetArrowInput();
         characterState.PlayerCharacterController.Move(new Vector3(directionInput.x, 0, directionInput.y) * Time.deltaTime * 10);
+        if (directionInput.sqrMagnitude > 0f)
+        {
+            characterState.PlayerTransform.rotation = Quaternion.LookRotation(new Vector3(directionInput.x, 0f, directionInput.y));
+        }
         CheckExitCondition();
     }
 

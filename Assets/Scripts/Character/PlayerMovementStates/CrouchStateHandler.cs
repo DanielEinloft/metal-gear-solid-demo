@@ -19,7 +19,11 @@ public class CrouchStateHandler : BaseFSMState
     public override void UpdateState()
     {
         Vector2 directionInput = InputHandler.GetArrowInput();
-        characterState.PlayerCharacterController.Move(new Vector3(directionInput.x, 0, directionInput.y) * Time.deltaTime * 2);
+        characterState.PlayerCharacterController.Move(new Vector3(directionInput.x, 0, directionInput.y) * Time.deltaTime * 5);
+        if (directionInput.sqrMagnitude > 0f)
+        {
+            characterState.PlayerTransform.rotation = Quaternion.LookRotation(new Vector3(directionInput.x, 0f, directionInput.y));
+        }
         CheckExitCondition();
     }
 
